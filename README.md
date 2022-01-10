@@ -10,4 +10,6 @@
   + MyBMI
 + Bài tập
   + HelloByName
+  + ReadNumbers
+  + CurrencyConversion
   + 
