@@ -5,5 +5,8 @@
   + VariableJava
   + RectangularArea
   + PhuongTrinhBacNhat
+  + DayofMonth
+  + LeapYear
+  + MyBMI
 + Bài tập
-  + 
+  + HelloByName
