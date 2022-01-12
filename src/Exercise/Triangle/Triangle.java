@@ -1,4 +1,4 @@
-package Exercise.Triangle;
+package exercise.triangle;
 
 public class Triangle extends Shape {
     private double side1 = 1.0;

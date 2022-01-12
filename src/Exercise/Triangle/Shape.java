@@ -1,4 +1,4 @@
-package Exercise.Triangle;
+package exercise.triangle;
 
 public class Shape {
     private String color;

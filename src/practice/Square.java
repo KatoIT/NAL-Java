@@ -1,4 +1,4 @@
-package Practice;
+package practice;
 
 public class Square extends Rectangle {
     public Square() {

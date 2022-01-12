@@ -1,6 +1,5 @@
-package Practice;
+package practice;
 
-import Exercise.Shape.Circle;
 
 public class Main {
 

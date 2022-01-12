@@ -1,4 +1,4 @@
-package Exercise.Shape;
+package exercise.shape;
 
 public class Main {
 

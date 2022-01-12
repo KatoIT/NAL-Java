@@ -1,6 +1,4 @@
-package exercise.shape;
-
-import practice.Shape;
+package practice;
 
 public class Circle extends Shape {
     private double radius;

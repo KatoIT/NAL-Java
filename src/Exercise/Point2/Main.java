@@ -1,4 +1,4 @@
-package Exercise.Point2;
+package exercise.point2;
 
 public class Main {
 
