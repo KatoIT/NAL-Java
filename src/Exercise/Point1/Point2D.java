@@ -1,7 +1,4 @@
-package Exercise.Point1;
-
-import java.sql.Array;
-import java.util.Arrays;
+package exercise.point1;
 
 public class Point2D {
     private float x;

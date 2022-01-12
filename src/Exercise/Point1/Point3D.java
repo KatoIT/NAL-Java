@@ -1,4 +1,4 @@
-package Exercise.Point1;
+package exercise.point1;
 
 public class Point3D extends Point2D {
     private float z;
