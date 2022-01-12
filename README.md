@@ -16,7 +16,7 @@
   + Point2
     + Point
     + MovablePoint
-  + Triangle
+  + Triangle(*)
     + Shape
     + Triangle
 + Quiz
