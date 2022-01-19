@@ -7,31 +7,30 @@ public class Main {
         /*
         * String
         * */
-        BinaryTreeDemo<String> binaryTree = new BinaryTreeDemo<String>() {
+        BTSDemo<String> btsDemo = new BTSDemo<>() {
             @Override
             int compareTo(String o1, String o2) {
                  return o1.compareTo(o2);
             }
         };
-        binaryTree.insert("E");
-        binaryTree.insert("C");
-        binaryTree.insert("G");
-        binaryTree.insert("B");
-        binaryTree.insert("F");
-        binaryTree.insert("A");
-        binaryTree.insert("D");
-        binaryTree.insert("H");
-        System.out.println(binaryTree);
-        binaryTree.remove("C");
-        System.out.println(binaryTree.printTree(0));
-        System.out.println(binaryTree.browsing(true));
+        btsDemo.insert("E");
+        btsDemo.insert("C");
+        btsDemo.insert("G");
+        btsDemo.insert("B");
+        btsDemo.insert("F");
+        btsDemo.insert("A");
+        btsDemo.insert("D");
+        btsDemo.insert("H");
+        System.out.println(btsDemo);
+        btsDemo.remove("C");
+        System.out.println(btsDemo.inOrder(true));
         String val = "F";
-        System.out.println("Index of "+ val + ": " +  binaryTree.search(val));
+        System.out.println("Index of "+ val + ": " +  btsDemo.search(val));
 
         /*
         * String
         * */
-        BinaryTreeDemo<Integer> BTInt = new BinaryTreeDemo<Integer>() {
+        BTSDemo<Integer> BTInt = new BTSDemo<>() {
             @Override
             int compareTo(Integer o1, Integer o2) {
                  return o1.compareTo(o2);
@@ -51,10 +50,16 @@ public class Main {
         }else {
             System.out.println("Delete fail!");
         }
-        System.out.println(BTInt.printTree(0));
-        System.out.println(BTInt.browsing(false));
+        System.out.println(BTInt.inOrder(false));
         Integer val2 = 71;
         System.out.println("Index of "+ val + ": " +  BTInt.search(val2));
+
+        /*
+        *
+        *
+        * */
+
+
 
     }
 }
