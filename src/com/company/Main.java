@@ -7,12 +7,7 @@ public class Main {
         /*
         * String
         * */
-        BTSDemo<String> btsDemo = new BTSDemo<>() {
-            @Override
-            int compareTo(String o1, String o2) {
-                 return o1.compareTo(o2);
-            }
-        };
+        BSTDemo<String> btsDemo = new BSTDemo<>();
         btsDemo.insert("E");
         btsDemo.insert("C");
         btsDemo.insert("G");
@@ -30,12 +25,7 @@ public class Main {
         /*
         * String
         * */
-        BTSDemo<Integer> BTInt = new BTSDemo<>() {
-            @Override
-            int compareTo(Integer o1, Integer o2) {
-                 return o1.compareTo(o2);
-            }
-        };
+        BSTDemo<Integer> BTInt = new BSTDemo<>() ;
         BTInt.insert(15);
         BTInt.insert(1);
         BTInt.insert(71);

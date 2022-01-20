@@ -9,79 +9,90 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BTSDemoTest {
 
-    BTSDemo<String> btsDemo;
-
+    BSTDemo<String> bstDemo;
 
     @BeforeEach
-    void create() {
-        this.btsDemo = new BTSDemo<>() {
-            @Override
-            int compareTo(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        };
-        btsDemo.insert("K");
-        btsDemo.insert("A");
-        btsDemo.insert("P");
-        btsDemo.insert("F");
-        btsDemo.insert("Q");
-        btsDemo.insert("Y");
-        btsDemo.insert("D");
+    void createTree() {
+        this.bstDemo = new BSTDemo<>();
+        bstDemo.insert("K");
+        bstDemo.insert("A");
+        bstDemo.insert("P");
+        bstDemo.insert("F");
+        bstDemo.insert("Q");
+        bstDemo.insert("Y");
+        bstDemo.insert("D");
     }
 
 
     @Test
-    void insertS() {
-        boolean expected = true;
-        boolean result = btsDemo.insert("S");
+    void insertValueIntoTheEmptyTree() {
+        int expected = 0;
+        BSTDemo<String> bst = new BSTDemo<>();
+        bst.insert("S");
+        int result = bst.find("S");
         assertEquals(expected, result);
     }
 
     @Test
-    void insertA() {
+    void insertValueDoesNotExist() {
+        int expected = 29;
+        bstDemo.insert("S");
+        int result = bstDemo.find("S");
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void insertAlreadyExistingValue() {
         boolean expected = false;
-        boolean result = btsDemo.insert("A");
+        boolean result = bstDemo.insert("A");
         assertEquals(expected, result);
     }
 
     @Test
     void getSize() {
         int expected = 7;
-        int result = btsDemo.getSize();
+        int result = bstDemo.getSize();
         assertEquals(expected, result);
     }
 
     @Test
     void clear() {
         int expected = 0;
-        btsDemo.clear();
-        int result = btsDemo.getSize();
+        bstDemo.clear();
+        int result = bstDemo.getSize();
         assertEquals(expected, result);
     }
 
     @Test
-    void find() {
+    void findValueDoesNotExist() {
+        int expected = -1;
+        int result = bstDemo.find("Z");
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void findAlreadyExistingValue() {
         int expected = 4;
-        int result = btsDemo.find("F");
+        int result = bstDemo.find("F");
         assertEquals(expected, result);
     }
 
     @Test
-    void removeF() {
-        boolean expected = true;
-        boolean result = btsDemo.remove("F");
-        assertEquals(expected, result);
-    }
-
-    @Test
-    void removeZ() {
+    void removeValueDoesNotExist() {
         boolean expected = false;
-        boolean result = btsDemo.remove("Z");
+        boolean result = bstDemo.remove("Z");
         assertEquals(expected, result);
     }
 
     @Test
-    void inOrder1() {
+    void removeAlreadyExistingValue() {
+        boolean expected = true;
+        boolean result = bstDemo.remove("F");
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void inAscendingOrder1() {
         ArrayList<String> expected = new ArrayList<>();
         expected.add("K");
         expected.add("A");
@@ -92,12 +103,12 @@ class BTSDemoTest {
         expected.add("D");
         expected.sort((o1, o2) -> o1.compareTo(o2));
 
-        ArrayList<String> result = btsDemo.inOrder(false);
+        ArrayList<String> result = bstDemo.inOrder(false);
         assertEquals(expected, result);
     }
 
     @Test
-    void inOrder2() {
+    void inDescendingOrder1() {
         ArrayList<String> expected = new ArrayList<>();
         expected.add("K");
         expected.add("A");
@@ -108,7 +119,7 @@ class BTSDemoTest {
         expected.add("D");
         expected.sort((o2, o1) -> o1.compareTo(o2));
 
-        ArrayList<String> result = btsDemo.inOrder(true);
+        ArrayList<String> result = bstDemo.inOrder(true);
         assertEquals(expected, result);
     }
 }

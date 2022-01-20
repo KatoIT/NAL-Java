@@ -2,21 +2,14 @@ package com.company;
 
 import java.util.ArrayList;
 
-public abstract class BTSDemo<E> {
+public class BSTDemo<E extends Comparable> {
     private static final int ROOT = 0;
     private int size = 0;
     private final ArrayList<E> elements;
 
-    /*
-     * abstract method
-     * o1 < o2 return -1
-     * o1 = o2 return 0
-     * o1 > o2 return 1
-     */
-    abstract int compareTo(E o1, E o2);
 
     // Constructor
-    BTSDemo() {
+    BSTDemo() {
         elements = new ArrayList<>();
     }
 
@@ -55,7 +48,7 @@ public abstract class BTSDemo<E> {
         if (size != 0) {
             int index = getIndex(value, ROOT);
             if (elements.get(index) != null) {
-                move(index);
+                remove(index);
                 size--;
                 return true;
             } else {
@@ -89,7 +82,7 @@ public abstract class BTSDemo<E> {
      * */
 
     // Increase Size
-    private void increaseSize(int number) {
+    private void insertNull(int number) {
         while (elements.size() - 1 < right(number)) {
             elements.add(null);
         }
@@ -105,16 +98,16 @@ public abstract class BTSDemo<E> {
     }
     //
 
-    private void move(int root) {
+    private void remove(int root) {
         int index = left(root);
         if (elements.get(index) != null) {
             elements.set(root, elements.get(index));
-            move(index);
+            remove(index);
         } else {
             index = right(root);
             if (elements.get(index) != null) {
                 elements.set(root, elements.get(index));
-                move(index);
+                remove(index);
             } else {
                 elements.set(root, null);
             }
@@ -123,18 +116,16 @@ public abstract class BTSDemo<E> {
 
     //
     private int getIndex(E value, int root) {
-        increaseSize(root);
+        insertNull(root);
         if (elements.get(root) == null) {
             return root;
         } else {
-            if (compareTo(value, elements.get(root)) > 0) {
+            if (value.compareTo(elements.get(root)) > 0) {
                 return getIndex(value, right(root));
+            } else if (value.compareTo(elements.get(root)) < 0) {
+                return getIndex(value, left(root));
             } else {
-                if (compareTo(value, elements.get(root)) < 0) {
-                    return getIndex(value, left(root));
-                } else {
-                    return root;
-                }
+                return root;
             }
         }
     }
