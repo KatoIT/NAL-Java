@@ -25,7 +25,7 @@ public class Main {
         btsDemo.remove("C");
         System.out.println(btsDemo.inOrder(true));
         String val = "F";
-        System.out.println("Index of "+ val + ": " +  btsDemo.search(val));
+        System.out.println("Index of "+ val + ": " +  btsDemo.find(val));
 
         /*
         * String
@@ -52,7 +52,7 @@ public class Main {
         }
         System.out.println(BTInt.inOrder(false));
         Integer val2 = 71;
-        System.out.println("Index of "+ val + ": " +  BTInt.search(val2));
+        System.out.println("Index of "+ val + ": " +  BTInt.find(val2));
 
         /*
         *

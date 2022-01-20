@@ -36,16 +36,18 @@ public abstract class BTSDemo<E> {
     }
 
     // Insert element
-    public void insert(E value) {
+    public boolean insert(E value) {
         if (size != 0) {
             int index = getIndex(value, ROOT);
             if (elements.get(index) == null) {
                 elements.set(index, value);
                 size++;
+                return true;
             }
         } else {
-            root(value);
+            return root(value);
         }
+        return false;
     }
 
     // Remove element
@@ -66,7 +68,7 @@ public abstract class BTSDemo<E> {
 
 
     // Search
-    public int search(E value) {
+    public int find(E value) {
         int index = getIndex(value, ROOT);
         if (elements.get(index) == null) {
             return -1;
@@ -94,9 +96,12 @@ public abstract class BTSDemo<E> {
     }
 
     // Creating root node
-    public void root(E value) {
-        elements.add(value);
-        size = 1;
+    public boolean root(E value) {
+        if (elements.add(value)) {
+            size = 1;
+            return true;
+        }
+        return false;
     }
     //
 
