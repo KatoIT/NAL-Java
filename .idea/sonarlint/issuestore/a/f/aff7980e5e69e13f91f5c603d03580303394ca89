@@ -1,0 +1,11 @@
+
+Z
+java:S2147"DCombine this catch with the one at line 22, which has the same body.(”ı¾
+†
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(”Éúâ
+
+java:S1319"kThe type of "contentFile" should be an interface such as "List" rather than the implementation "ArrayList".(ı»Øµ
+b
+java:S2095%"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(¿åÎ
+g
+java:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(¹®Ùœÿÿÿÿÿ
