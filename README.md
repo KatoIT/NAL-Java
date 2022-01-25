@@ -7,10 +7,3 @@
 + <span style="color:red">[Bài tập]</span>  Validate số điện thoại
 + <span style="color:yellow">[Quiz]</span> Xử lý chuỗi
 + <span style="color:orange">[Optional]</span> <span style="color:red">[Bài tập]</span> Crawl tin tức
-```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
