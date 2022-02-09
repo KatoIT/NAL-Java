@@ -21,4 +21,14 @@ public class DienThoaiChinhHang extends DienThoai {
         System.out.print(this.warrantyPeriod + ", ");
         System.out.println(this.location);
     }
+    @Override
+    public String toString() {
+        return id +
+                "," + name +
+                "," + price +
+                "," + qty +
+                "," + provide +
+                "," + warrantyPeriod +
+                "," + location;
+    }
 }

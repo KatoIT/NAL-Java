@@ -17,4 +17,12 @@ abstract class DienThoai {
 
     abstract void display();
 
+    @Override
+    public String toString() {
+        return id +
+                ", " + name +
+                ", " + price +
+                ", " + qty +
+                ", " + provide;
+    }
 }

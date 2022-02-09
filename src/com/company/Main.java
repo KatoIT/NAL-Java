@@ -26,14 +26,20 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("Id Dien thoai can xoa:");
-                    int id = sc.nextInt();
-                    if (service.checkDT(id)) {
-                        System.out.println("Xac Nhan xoa(1-Yes, 2-No):");
-                        int choose2 = sc.nextInt();
-                        if (choose2 == 1) {
-                            service.deleteDT(id);
+                    try {
+                        System.out.println("Id Dien thoai can xoa:");
+                        int id = sc.nextInt();
+                        if (service.checkDT(id)) {
+                            System.out.println("Xac Nhan xoa(1-Yes, 2-No):");
+                            int choose2 = sc.nextInt();
+                            if (choose2 == 1) {
+                                service.deleteDT(id);
+                            }
+                        } else {
+                            throw new NotFoundProductException("ID điện thoại không tồn tại.");
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     break;
                 case 3:

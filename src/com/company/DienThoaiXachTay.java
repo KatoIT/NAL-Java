@@ -21,4 +21,15 @@ public class DienThoaiXachTay extends DienThoai {
         System.out.print(this.country + ", ");
         System.out.println(this.status);
     }
+
+    @Override
+    public String toString() {
+        return id +
+                "," + name +
+                "," + price +
+                "," + qty +
+                ",'" + provide +
+                "," + country +
+                "," + status;
+    }
 }

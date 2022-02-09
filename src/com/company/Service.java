@@ -2,17 +2,18 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class Service {
+    String fileCH = "C:\\Users\\nguye\\Desktop\\NAL-Java\\src\\data\\mobilesCH.csv";
+    String fileXT = "C:\\Users\\nguye\\Desktop\\NAL-Java\\src\\data\\mobilesXT.csv";
     List<DienThoaiChinhHang> listCH = new ArrayList<>();
     List<DienThoaiXachTay> listXT = new ArrayList<>();
 
     Service() {
-        listCH = ReadDTCH("C:\\Users\\nguye\\Desktop\\NAL-Java\\src\\data\\mobilesCH.csv");
-        listXT = ReadDTXT("C:\\Users\\nguye\\Desktop\\NAL-Java\\src\\data\\mobilesXT.csv");
+        listCH = ReadDTCH(fileCH);
+        listXT = ReadDTXT(fileXT);
     }
 
     public void addDTCH(Scanner sc) {
@@ -50,6 +51,7 @@ public class Service {
         }
 
         listCH.add(new DienThoaiChinhHang(idAuto(), name, price, qty, provide, warrantyPeriod, location));
+        writeDT(true);
     }
 
     public void addDTXT(Scanner sc) {
@@ -86,6 +88,7 @@ public class Service {
             status = sc.next();
         }
         listXT.add(new DienThoaiXachTay(idAuto(), name, price, qty, provide, country, status));
+        writeDT(false);
     }
 
     public void display() {
@@ -149,20 +152,31 @@ public class Service {
         return listDTCH;
     }
 
-    public void writeDTCH(String actionName) {
-        String whereWrite = "./csvFiles/audit.csv";
-
+    public void writeDT(boolean isDTCH) {
+        String whereWrite = fileXT;
+        if (isDTCH) {
+            whereWrite = fileCH;
+        }
         try {
-            FileWriter fw = new FileWriter(whereWrite, true);
+            FileWriter fw = new FileWriter(whereWrite, false);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
+            if (isDTCH) {
+                for (DienThoaiChinhHang dtch :
+                        listCH) {
+                    pw.println(dtch.toString());
+                    dtch.display();
+                }
+            } else {
+                for (DienThoaiXachTay dtxt :
+                        listXT) {
+                    pw.println(dtxt.toString());
+                    dtxt.display();
+                }
 
-            Date date = new Date();
-
-            pw.println(actionName + "," + date.toString());
+            }
             pw.flush();
             pw.close();
-
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -175,6 +189,7 @@ public class Service {
                 listXT) {
             if (id == dtxt.id) {
                 listXT.remove(dtxt);
+                writeDT(false);
                 return true;
             }
         }
@@ -182,6 +197,7 @@ public class Service {
                 listCH) {
             if (id == dtch.id) {
                 listXT.remove(dtch);
+                writeDT(true);
                 return true;
             }
         }
@@ -217,7 +233,7 @@ public class Service {
         return id + 1;
     }
 
-    public DienThoai findById(int id){
+    public DienThoai findById(int id) {
         for (DienThoai dtxt :
                 listXT) {
             if (id == dtxt.id) {
@@ -233,7 +249,7 @@ public class Service {
         return null;
     }
 
-    public DienThoai findByName(String name){
+    public DienThoai findByName(String name) {
         for (DienThoai dtxt :
                 listXT) {
             if (name.equals(dtxt.name)) {
@@ -248,4 +264,5 @@ public class Service {
         }
         return null;
     }
+
 }
