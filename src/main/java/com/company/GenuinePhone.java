@@ -5,7 +5,7 @@ public class GenuinePhone extends Phone {
     String warrantyCoverage;
 
     public GenuinePhone(int id, String name, double price, int quantity, String producer, int warrantyPeriod, String warrantyCoverage) {
-        super(id, name, price, quantity, producer);
+        super("genuine", id, name, price, quantity, producer);
         this.warrantyPeriod = warrantyPeriod;
         this.warrantyCoverage = warrantyCoverage;
     }
@@ -24,11 +24,7 @@ public class GenuinePhone extends Phone {
 
     @Override
     public String toString() {
-        return id +
-                "," + name +
-                "," + price +
-                "," + quantity +
-                "," + producer +
+        return super.toString() +
                 "," + warrantyPeriod +
                 "," + warrantyCoverage;
     }

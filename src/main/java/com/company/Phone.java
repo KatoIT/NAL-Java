@@ -1,13 +1,15 @@
 package com.company;
 
 abstract class Phone {
+    String category;
     int id;
     String name;
     double price;
     int quantity;
     String producer;
 
-    Phone(int id, String name, double price, int quantity, String producer) {
+    Phone(String category, int id, String name, double price, int quantity, String producer) {
+        this.category = category;
         this.id = id;
         this.name = name;
         this.price = price;
@@ -19,7 +21,8 @@ abstract class Phone {
 
     @Override
     public String toString() {
-        return id +
+        return category +
+                "," + id +
                 "," + name +
                 "," + price +
                 "," + quantity +

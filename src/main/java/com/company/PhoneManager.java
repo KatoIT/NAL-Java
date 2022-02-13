@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class PhoneManager {
     String filePath = new File("").getAbsolutePath();
-    String fileName = filePath + "\\src\\data\\mobiles.csv";
+    String fileName = filePath + "\\src\\main\\java\\data\\mobiles.csv";
     List<Phone> phoneList = new ArrayList<>();
     Service service = new Service();
 
@@ -26,24 +26,27 @@ public class PhoneManager {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             while ((line = br.readLine()) != null) {
                 String[] columns = line.split(splitBy);
-                if (service.isNumeric(columns[5].trim())) {
+                if (columns[0].trim().equals("genuine")) {
                     phoneList.add(new GenuinePhone(
-                            Integer.parseInt(columns[0].trim()),
-                            columns[1].trim(),
-                            Double.parseDouble(columns[2].trim()),
-                            Integer.parseInt(columns[3].trim()),
-                            columns[4].trim(),
-                            Integer.parseInt(columns[5].trim()),
-                            columns[6].trim()));
-                } else {
-                    phoneList.add(new CellPhone(
-                            Integer.parseInt(columns[0].trim()),
-                            columns[1].trim(),
-                            Double.parseDouble(columns[2].trim()),
-                            Integer.parseInt(columns[3].trim()),
-                            columns[4].trim(),
+                            Integer.parseInt(columns[1].trim()),
+                            columns[2].trim(),
+                            Double.parseDouble(columns[3].trim()),
+                            Integer.parseInt(columns[4].trim()),
                             columns[5].trim(),
-                            columns[6].trim()));
+                            Integer.parseInt(columns[6].trim()),
+                            columns[7].trim()));
+                } else if (columns[0].trim().equals("cell")) {
+                    phoneList.add(new CellPhone(
+                            Integer.parseInt(columns[1].trim()),
+                            columns[2].trim(),
+                            Double.parseDouble(columns[3].trim()),
+                            Integer.parseInt(columns[4].trim()),
+                            columns[5].trim(),
+                            columns[6].trim(),
+                            columns[7].trim()));
+                } else {
+                    // TODO sản phẩm loại khác.
+                    continue;
                 }
             }
         } catch (IOException e) {
@@ -55,7 +58,6 @@ public class PhoneManager {
         try (FileWriter fw = new FileWriter(fileName, false);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter pw = new PrintWriter(bw)) {
-
             for (Phone phone : phoneList) {
                 pw.println(phone.toString());
             }
@@ -77,19 +79,20 @@ public class PhoneManager {
     }
 
     public boolean deletePhone(Phone phone) {
-        phoneList.remove(phone);
-        if (writePhoneListToFile()) {
-            return true;
-        } else {
-            phoneList.add(phone);
-            return false;
+        if (phoneList.remove(phone)) {
+            if (writePhoneListToFile()) {
+                return true;
+            } else {
+                phoneList.add(phone);
+                return false;
+            }
         }
+        return false;
     }
 
     /**
      * Search
      */
-
     public List<Phone> approximateSearch(String textSearch) {
         List<Phone> phoneListAnswer = new ArrayList<>();
         Pattern pattern = Pattern.compile("^.*" + textSearch + ".*$");
@@ -120,8 +123,13 @@ public class PhoneManager {
      *
      */
     public void showPhoneList() {
-        for (Phone phone : phoneList) {
-            phone.show();
+        if (phoneList.isEmpty()) {
+            System.out.println("*** Không có sản phẩm nào ***");
+        } else {
+            System.out.println("Số sản phẩm điện thoại hiện có: " + phoneList.size());
+            for (Phone phone : phoneList) {
+                phone.show();
+            }
         }
     }
 

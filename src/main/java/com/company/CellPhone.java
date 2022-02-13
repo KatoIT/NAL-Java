@@ -5,14 +5,14 @@ public class CellPhone extends Phone {
     String status;
 
     public CellPhone(int id, String name, double price, int quantity, String provide, String country, String status) {
-        super(id, name, price, quantity, provide);
+        super("cell", id, name, price, quantity, provide);
         this.country = country;
         this.status = status;
     }
 
     @Override
     void show() {
-        System.out.println("\n>>> Điện thoại xách tay <<<");
+        System.out.println("\n>>> Hàng xách tay <<<");
         System.out.println("| Mã sản phẩm: " + this.id);
         System.out.println("| Tên sản phẩm: " + this.name);
         System.out.println("| Giá sản phẩm: " + this.price);
@@ -24,11 +24,7 @@ public class CellPhone extends Phone {
 
     @Override
     public String toString() {
-        return id +
-                "," + name +
-                "," + price +
-                "," + quantity +
-                ",'" + producer +
+        return super.toString() +
                 "," + country +
                 "," + status;
     }
